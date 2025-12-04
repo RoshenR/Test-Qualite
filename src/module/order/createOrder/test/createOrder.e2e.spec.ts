@@ -87,7 +87,9 @@ describe('US-2 : Créer une commande - E2E', () => {
             .set('Content-Type', 'application/json');
 
         expect(response.status).toBe(400);
-        expect(response.body.message).toBe('Les identifiants produits doivent être des nombres valides');
+        expect(response.body.message).toBe(
+            'Les identifiants produits doivent être des nombres valides'
+        );
 
         const orders = await AppDataSource.getRepository(Order).find();
         expect(orders).toHaveLength(0);

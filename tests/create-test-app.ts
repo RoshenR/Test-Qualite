@@ -1,7 +1,5 @@
 import { PostgreSqlContainer } from '@testcontainers/postgresql';
 import { buildApp } from '../src/config/app';
-import { DataSource } from 'typeorm';
-import createTypeOrmDataSource from '../src/config/db.config';
 import AppDataSource from '../src/config/db.config';
 
 export async function createTestApp() {
