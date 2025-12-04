@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { CreateOrderTypeOrmRepository } from './createOrderTypeOrmRepository';
-import { CreateOrderUseCase } from './createOrderUseCase';
+import { CreateOrderUseCase, OrderValidationError } from './createOrderUseCase';
 
 const express = require('express');
 const router = express.Router();
@@ -14,7 +14,7 @@ router.post('/order', async (request: Request, response: Response) => {
     try {
         await createOrderUseCase.execute({ productIds, totalPrice });
     } catch (error) {
-        if (error instanceof Error) {
+        if (error instanceof OrderValidationError) {
             return response.status(400).json({ message: error.message });
         }
 
