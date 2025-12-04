@@ -12,8 +12,11 @@ router.post('/product', async (request: Request, response: Response) => {
     const createProductUseCase = new CreateProductUseCase(createProductTypeOrmRepository);
 
     try {
-        await createProductUseCase.execute();
-    } catch (error) {
+        await createProductUseCase.execute({
+            title,
+            description,
+            price
+        });    } catch (error) {
         if (error instanceof Error) {
             return response.status(400).json({ message: error.message });
         }

@@ -23,8 +23,11 @@ describe('US-1 : Créer un produit', () => {
 
         await expect(
             // Quand je créé un produit avec en titre «switch 2», description «nouvelle console» et un prix à 500
-            createProductUseCase.execute()
-            // Alors le produit doit être créé
+            createProductUseCase.execute({
+                title: 'switch 2',
+                description: 'nouvelle console',
+                price: 500
+            })
         ).resolves.not.toThrow();
     });
 
@@ -35,7 +38,11 @@ describe('US-1 : Créer un produit', () => {
 
         await expect(
             // Quand je créé un produit avec en titre «sw»
-            createProductUseCase.execute()
+            createProductUseCase.execute({
+                title: 'sw',
+                description: 'nouvelle console',
+                price: 500
+            })
             // Alors une erreur doit être envoyée "titre trop court»
         ).rejects.toThrow('titre trop court');
     });
@@ -47,8 +54,11 @@ describe('US-1 : Créer un produit', () => {
 
         await expect(
             // Quand je créé un produit avec en prix -10
-            createProductUseCase.execute()
-            // Alors une erreur doit être envoyée "le prix doit être supérieur à 0»
+            createProductUseCase.execute({
+                title: 'switch',
+                description: 'nouvelle console',
+                price: -10
+            })            // Alors une erreur doit être envoyée "le prix doit être supérieur à 0»
         ).rejects.toThrow('le prix doit être supérieur à 0');
     });
 
@@ -59,8 +69,11 @@ describe('US-1 : Créer un produit', () => {
 
         await expect(
             // Quand je créé un produit avec en prix 11000
-            createProductUseCase.execute()
-            // Alors une erreur doit être envoyée "le prix doit être inférieur à 10000»
+            createProductUseCase.execute({
+                title: 'switch',
+                description: 'nouvelle console',
+                price: 11000
+            })
         ).rejects.toThrow('le prix doit être inférieur à 10000');
     });
 
@@ -76,8 +89,11 @@ describe('US-1 : Créer un produit', () => {
 
         await expect(
             // Quand je créé un produit
-            createProductUseCase.execute()
-            // Alors une erreur doit être envoyée «erreur lors de la création du produit»
+            createProductUseCase.execute({
+                title: 'switch',
+                description: 'nouvelle console',
+                price: 500
+            })
         ).rejects.toThrow('erreur lors de la création du produit');
     });
 });

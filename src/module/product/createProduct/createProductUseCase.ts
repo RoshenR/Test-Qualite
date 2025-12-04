@@ -1,7 +1,6 @@
 import { CreateProductRepository } from './createProductRepository';
 import { Product } from '../Product';
 
-
 export class CreateProductUseCase {
     private productRepository: CreateProductRepository;
 
@@ -18,13 +17,15 @@ export class CreateProductUseCase {
         description: string;
         price: number;
     }): Promise<void> {
-        const product = new Product(title, description, price);
-
+        const product = new Product({
+            title,
+            description,
+            price
+        });
         try {
             await this.productRepository.save(product);
         } catch (error) {
             throw new Error('erreur lors de la création du produit');
-
         }
     }
 }
