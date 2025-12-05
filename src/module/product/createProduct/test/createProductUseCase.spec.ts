@@ -77,18 +77,12 @@ describe('US-1 : Créer un produit', () => {
         ).rejects.toThrow('le prix doit être inférieur à 10000');
     });
 
-    //    - Exemple 5/ Scénario 5 : création échouée, échec de sauvegarde non prévue
-    //       - Étant donné qu'il n'y a pas de produit enregistré
-    //       - Quand je créé un produit, si la sauvegarde échoue
-    //       - Alors une erreur doit être envoyée «erreur lors de la création du produit»
-
     test('Scénario 5 : création échouée, échec de sauvegarde non prévue', async () => {
         //Étant donné qu'il n'y a pas de produit enregistré
         const createProductRepository = new CreateProductMockFailRepository();
         const createProductUseCase = new CreateProductUseCase(createProductRepository);
 
         await expect(
-            // Quand je créé un produit
             createProductUseCase.execute({
                 title: 'switch',
                 description: 'nouvelle console',
