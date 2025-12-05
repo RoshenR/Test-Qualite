@@ -5,3 +5,8 @@
 - installer les dépendances : "npm install" à la racine du projet
 - démarrer le serveur : "npm run dev" à la racine du projet
 - installer Postman et tester l'url localhost:3000/api/health pour vérifier que l'API fonctionne
+
+
+
+
+
